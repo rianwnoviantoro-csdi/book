@@ -64,7 +64,13 @@ export class BookCRUDApplication {
           member.is_penalized &&
           dayjs(member.end_of_penalized).diff(dayjs(), 'day') < 3
         ) {
-          throw new ForbiddenException('Member is currently under penalty.');
+          throw new BadRequestException('Member is currently under penalty.');
+        }
+
+        if (member.borrow.length >= 2) {
+          throw new BadRequestException(
+            'Member are not allow borrow books more than 2.',
+          );
         }
 
         await entityManager.save(Member, {

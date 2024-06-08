@@ -13,9 +13,6 @@ export class BookApplication {
         const books = await entityManager
           .createQueryBuilder(Book, 'book')
           .leftJoin('book.borrow', 'borrow')
-          .where('borrow._id IS NULL OR borrow.status = :status', {
-            status: 'RETURNED',
-          })
           .getMany();
 
         const borrowedCounts = await entityManager
