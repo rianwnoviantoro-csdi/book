@@ -89,7 +89,7 @@ export class BookCRUDApplication {
             dayjs().format('YYYYMMDDHmmss'),
           member: member,
           book: book,
-          date_borrowed: dayjs().format('YYYY-MM-DD'),
+          date_borrowed: dayjs().format('YYYY-MM-DD H:mm:ss'),
           status: 'BORROWED',
         });
 
@@ -124,7 +124,7 @@ export class BookCRUDApplication {
 
         await entityManager.save(Borrow, {
           ...borrow,
-          date_returned: dayjs(body.date_returned).format('YYYY-MM-DD'),
+          date_returned: dayjs(body.date_returned).format('YYYY-MM-DD H:mm:ss'),
           status: 'RETURNED',
         });
 

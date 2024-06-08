@@ -7,7 +7,7 @@ export class ReturnBookRequest {
   @ApiProperty({
     type: 'string',
     title: 'date returned',
-    example: '2024-01-01',
+    example: '2024-01-01 23:40:40',
   })
   date_returned: string;
 }
