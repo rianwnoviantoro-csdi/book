@@ -67,7 +67,10 @@ export class BookCRUDApplication {
           throw new BadRequestException('Member is currently under penalty.');
         }
 
-        if (member.borrow.length >= 2) {
+        if (
+          member.borrow.filter((borrow) => borrow.status === 'BORROWED')
+            .length >= 2
+        ) {
           throw new BadRequestException(
             'Member are not allow borrow books more than 2.',
           );
