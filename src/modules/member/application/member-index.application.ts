@@ -12,6 +12,13 @@ export class MemberApplication {
       return this.connection.transaction(async (entityManager) => {
         const membersWithBooks = await entityManager
           .createQueryBuilder(Member, 'member')
+          .select([
+            'member._id',
+            'member.code',
+            'member.name',
+            'member.is_penalized',
+            'member.end_of_penalized',
+          ])
           .getMany();
 
         const borrowedBooksCounts = await entityManager

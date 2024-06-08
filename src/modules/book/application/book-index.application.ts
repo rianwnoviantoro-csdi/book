@@ -13,6 +13,13 @@ export class BookApplication {
         const books = await entityManager
           .createQueryBuilder(Book, 'book')
           .leftJoin('book.borrow', 'borrow')
+          .select([
+            'book._id',
+            'book.code',
+            'book.name',
+            'book.author',
+            'book.stock',
+          ])
           .getMany();
 
         const borrowedCounts = await entityManager
